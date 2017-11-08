@@ -15,6 +15,9 @@ public abstract class MatrixFile {
 
 	abstract boolean openFile();
 
+	public long getMax() {
+		return max;
+	}
 //	private void closeFile(){
 //		s.close();
 //	}

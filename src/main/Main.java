@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import files.MatrixFileRead;
 import files.MatrixFileWrite;
 import files.PMI;
+import files.PMIFileWrite;
 import files.VocabularyFile;
 import tools.nextElement.NextIntElement;
 import tools.nextElement.NextStringElement;
@@ -16,12 +17,22 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("PMI 26 paz 2017 r.\n");
 
-        PMI pmi = new PMI(null, null);
-        float pmi_result = pmi.compute(	new BigInteger("50000952"),
+        PMI pmi = new PMI();
+        float pmi_result = PMI.compute(	new BigInteger("50000952"),
         								new BigInteger("1938"),
         								new BigInteger("1311"),
         								new BigInteger("1159"));
         System.out.println("PMI: " + pmi_result);
+
+        MatrixFileRead mf = new MatrixFileRead("files//coocMX_sum", 10000);
+        VocabularyFile vf = new VocabularyFile("files//vocabTotal", 10000);
+        PMIFileWrite pf = new PMIFileWrite("files//result", 10000);
+
+        long time = System.nanoTime();
+        pmi.computeFile(mf, vf, pf);
+
+        time = System.nanoTime()-time;
+        System.out.println("Time: " + (time/1000000) + " ms");
 
 //        BigInteger tSum = totalSum("files//vocabTotal", 10000);
 //        System.out.println("Total: " + tSum.toString());
@@ -39,7 +50,7 @@ public class Main {
     @SuppressWarnings("unused")
 	private static BigInteger totalSum(String path, long max){
         VocabularyFile df = new VocabularyFile("files//vocabTotal", 10000);
-        return df.getSum();
+        return df.getTotalSum();
     }
 
     @SuppressWarnings("unused")

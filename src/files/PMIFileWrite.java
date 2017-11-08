@@ -10,7 +10,7 @@ public class PMIFileWrite extends PMIFile {
 
 	DataOutputStream w;
 
-	protected PMIFileWrite(String path, long max) {
+	public PMIFileWrite(String path, long max) {
 		super(path, max);
 		System.out.println("Opening file \"" + path + "\": " + (openFile() ? "OK" : "Error"));
 	}
@@ -27,7 +27,8 @@ public class PMIFileWrite extends PMIFile {
 		}
 
 		try {
-			w.writeLong(max);
+			System.out.println("max: " + max);
+			w.writeLong(max*max);
 		} catch (IOException e) {
 			return false;
 		}
