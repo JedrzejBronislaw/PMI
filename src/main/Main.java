@@ -15,24 +15,20 @@ import tools.Progressbar;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("PMI 26 paz 2017 r.\n");
+//        System.out.println("PMI 26 paz 2017 r.\n");
+        System.out.println("PMI 09 lis 2017 r.\n");
 
-        PMI pmi = new PMI();
-        float pmi_result = PMI.compute(	new BigInteger("50000952"),
-        								new BigInteger("1938"),
-        								new BigInteger("1311"),
-        								new BigInteger("1159"));
-        System.out.println("PMI: " + pmi_result);
 
-        MatrixFileRead mf = new MatrixFileRead("files//coocMX_sum", 10000);
-        VocabularyFile vf = new VocabularyFile("files//vocabTotal", 10000);
-        PMIFileWrite pf = new PMIFileWrite("files//result", 10000);
+//        computePMI();
 
-        long time = System.nanoTime();
-        pmi.computeFile(mf, vf, pf);
 
-        time = System.nanoTime()-time;
-        System.out.println("Time: " + (time/1000000) + " ms");
+//        float pmi_result = PMI.compute(	new BigInteger("50000952"),
+//        								new BigInteger("1938"),
+//        								new BigInteger("1311"),
+//        								new BigInteger("1159"));
+//        System.out.println("PMI: " + pmi_result);
+
+
 
 //        BigInteger tSum = totalSum("files//vocabTotal", 10000);
 //        System.out.println("Total: " + tSum.toString());
@@ -45,6 +41,21 @@ public class Main {
 //        													"files//coocMX4"}, 10000);
 
     }
+
+	@SuppressWarnings("unused")
+	private static void computePMI(){
+	    PMI pmi = new PMI();
+
+	    MatrixFileRead mf = new MatrixFileRead("files//coocMX_sum", 10000);
+	    VocabularyFile vf = new VocabularyFile("files//vocabTotal", 10000);
+	    PMIFileWrite pf = new PMIFileWrite("files//result", 10000);
+
+	    long time = System.nanoTime();
+	    pmi.computeFile(mf, vf, pf);
+
+	    time = System.nanoTime()-time;
+	    System.out.println("Time: " + (time/1000000) + " ms");
+	}
 
 
     @SuppressWarnings("unused")
