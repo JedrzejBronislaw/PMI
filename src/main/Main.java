@@ -7,9 +7,11 @@ import files.MatrixFileWrite;
 import files.PMI;
 import files.PMIFileWrite;
 import files.VocabularyFile;
+import tools.nextElement.NextFloatElement;
 import tools.nextElement.NextIntElement;
 import tools.nextElement.NextStringElement;
 import tools.Calc;
+import tools.MaxBuffer;
 import tools.Progressbar;
 
 public class Main {
@@ -18,7 +20,12 @@ public class Main {
 //        System.out.println("PMI 26 paz 2017 r.\n");
         System.out.println("PMI 09 lis 2017 r.\n");
 
+        int max = 10000;
+		MatrixFileRead mf = new MatrixFileRead("files//pmiMX", max);
 
+		mf.countNumber(new NextStringElement());
+
+//        lab2();
 //        computePMI();
 
 
@@ -41,6 +48,40 @@ public class Main {
 //        													"files//coocMX4"}, 10000);
 
     }
+
+	private static void lab2() {
+		int max = 10000;
+		float value;
+
+		MatrixFileRead mf = new MatrixFileRead("files//pmiMX", max);
+		VocabularyFile vf = new VocabularyFile("files//totalVocab", max);
+		MaxBuffer maxBuffer = new MaxBuffer(10);
+
+		vf.load();
+
+		for(int i=0; i<max; i++)
+			for(int j=0; j<max; j++){
+				value = mf.nextFloat();
+				maxBuffer.update(value, i, j);
+				if (value>8)
+					System.out.println(value + " -> " + vf.getWord(i) + ", " + vf.getWord(j));
+			}
+
+
+
+//		for (int i=0; i<10; i++)
+//			System.out.println(mf.nextFloat());
+//		System.out.println();
+//
+//		for (int i=0; i<max-10; i++)
+//			mf.nextFloat();
+//		System.out.println();
+//
+//		for (int i=0; i<10; i++)
+//			System.out.println(mf.nextFloat());
+//		System.out.println();
+
+	}
 
 	@SuppressWarnings("unused")
 	private static void computePMI(){

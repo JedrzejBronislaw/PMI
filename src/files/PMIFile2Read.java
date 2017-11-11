@@ -5,26 +5,22 @@ import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-import tools.nextElement.NextStringElement;
 import tools.NextElement;
 import tools.Progressbar;
+import tools.nextElement.NextStringElement;
 
-public class MatrixFileRead extends MatrixFile {
+public class PMIFile2Read extends MatrixFile {
 
 	private Scanner s = null;
 	private NextStringElement nextStr = new NextStringElement();
 
-	public MatrixFileRead(String path, long max) {
+	public PMIFile2Read(String path, long max) {
 		super(path, max);
 		System.out.println("Opening file \"" + path + "\": " + (openFile() ? "OK" : "Error"));
 	}
 
 	public BigInteger nextBigInt(){
 		return new BigInteger((String)(nextStr.next(s)));
-	}
-	
-	public float nextFloat(){
-		return s.nextFloat();
 	}
 
 
