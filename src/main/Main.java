@@ -20,11 +20,7 @@ public class Main {
 //        System.out.println("PMI 26 paz 2017 r.\n");
         System.out.println("PMI 09 lis 2017 r.\n");
 
-        int max = 10000;
-		MatrixFileRead mf = new MatrixFileRead("files//pmiMX", max);
-
-		mf.countNumber(new NextStringElement());
-
+        checkRowSize();
 //        lab2();
 //        computePMI();
 
@@ -49,6 +45,7 @@ public class Main {
 
     }
 
+	@SuppressWarnings("unused")
 	private static void lab2() {
 		int max = 10000;
 		float value;
@@ -68,20 +65,27 @@ public class Main {
 			}
 
 
-
-//		for (int i=0; i<10; i++)
-//			System.out.println(mf.nextFloat());
-//		System.out.println();
-//
-//		for (int i=0; i<max-10; i++)
-//			mf.nextFloat();
-//		System.out.println();
-//
-//		for (int i=0; i<10; i++)
-//			System.out.println(mf.nextFloat());
-//		System.out.println();
-
 	}
+
+	@SuppressWarnings("unused")
+	private static void checkRowSize(){
+        int max = 10000;
+		MatrixFileRead mf = new MatrixFileRead("files//pmiMX", max);
+		VocabularyFile vocabulary = new VocabularyFile("files//totalVocab", 100000000);
+		long[] results;
+
+		vocabulary.load();
+		mf.setVocabularyFile(vocabulary);
+
+		results = mf.countNumber(new NextStringElement());
+		System.out.println("size: " + results[0]);
+		System.out.println("time: " + (results[1]/1000000) + " ms");
+
+		results = mf.checkRowSize(new NextStringElement(),10000);
+//		System.out.println("number of lines: " + results[0]);
+		System.out.println("time: " + (results[1]/1000000) + " ms");
+	}
+
 
 	@SuppressWarnings("unused")
 	private static void computePMI(){
